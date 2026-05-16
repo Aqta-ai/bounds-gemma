@@ -136,12 +136,16 @@ async function callOllama(chunk: string): Promise<RawGemmaDetection[]> {
 // deployment that never lands on a Gemma-required document never pays the
 // download cost.
 //
-// The model id below resolves to Gemma 4 E2B Instruct, q4f16_1 quantisation,
-// served from the MLC CDN. Validated 2026-04-13. The constant lives
-// here rather than at
-// module scope so a build-time tree-shake of the WebLLM path also drops
-// the id. Requires WebGPU + shader-f16 feature in the browser.
-const WEBLLM_MODEL_ID = 'gemma-4-E2B-it-q4f16_1-MLC'
+// Default model id resolves to Gemma 4 E2B Instruct, q4f16_1 quantisation
+// (stock community release, validated 2026-04-13). Override via the build-
+// time env var VITE_BOUNDS_GEMMA_MODEL_ID to swap in a custom fine-tune;
+// pointing at huggingface.co/Aqta-ai/bounds-gemma-e2b-phi-ft/resolve/...
+// loads our domain-tuned model in place of stock. Requires WebGPU +
+// shader-f16 feature in the browser.
+const WEBLLM_MODEL_ID =
+  (typeof import.meta !== 'undefined' &&
+    (import.meta as { env?: Record<string, string> }).env?.VITE_BOUNDS_GEMMA_MODEL_ID) ||
+  'gemma-4-E2B-it-q4f16_1-MLC'
 
 interface WebLLMEngine {
   chat: {
