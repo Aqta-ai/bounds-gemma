@@ -10,3 +10,10 @@ coverage/
 .idea/
 .vscode/
 *.log
+
+# Training artefacts (large, regenerated from scripts)
+finetune/data/phi_training.jsonl
+finetune/data/*.jsonl
+bounds-gemma-e2b-phi-ft/
+bounds-gemma-e2b-phi-ft-gguf/
+*.task

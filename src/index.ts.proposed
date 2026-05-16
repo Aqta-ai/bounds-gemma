@@ -1,0 +1,43 @@
+// Public API surface for the bounds-gemma npm package.
+//
+// Three entry points that map to three integration shapes:
+//
+//   1. `bounds-gemma/parser` — pure parser + validator. No model, no
+//      worker, no DOM. Useful for unit tests, server-side parsing of
+//      a model response captured elsewhere, or building your own
+//      pipeline on top of the validated detection schema.
+//
+//   2. `bounds-gemma/pipeline` — main-thread facade that probes
+//      Ollama and falls back to WebLLM, dispatches jobs to the
+//      Worker, and returns parsed Detection[]. The standard
+//      consumer entry point.
+//
+//   3. `bounds-gemma/worker` — the Web Worker implementation. Bundle
+//      this directly into your application's worker chain if you
+//      want full control over message-passing and lifecycle.
+//
+// The root export is the union: parser symbols + pipeline facade +
+// type names. Use the sub-path imports for tighter bundles.
+
+export {
+  parseAndValidate,
+  HEALTHCARE_CONFIDENCE_FLOOR,
+  CHUNK_MAX_CHARS,
+  type RawGemmaDetection,
+} from './workers/gemmaParse'
+
+export {
+  startGemmaJob,
+  cancelGemmaJob,
+  getGemmaBackend,
+  subscribeGemmaBackend,
+  subscribeGemmaModelProgress,
+  type GemmaBackend,
+} from './pipeline/GemmaWorker'
+
+export type {
+  PiiType,
+  DetectionSource,
+  BBox,
+  Detection,
+} from './types/index'

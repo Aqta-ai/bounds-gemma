@@ -1,0 +1,35 @@
+# Exclude from the npm tarball. The published package ships the
+# compiled `dist/` JS + types, the original `src/` for sourcemaps, the
+# LICENSE / NOTICE / README. Everything else is local dev surface.
+
+# Local dev configs
+.gitignore
+tsconfig.json
+tsconfig.build.json
+vitest.config.ts
+
+# Tests (source ships, but compiled tests do not)
+**/__tests__/**
+**/*.test.ts
+**/*.test.js
+**/*.test.d.ts
+
+# Example runners
+examples/
+
+# CI / contributing docs (visible on GitHub, not in the tarball)
+CONTRIBUTING.md
+.github/
+
+# Build artefacts
+dist/**/*.test.*
+dist/**/__tests__/
+
+# Editor / OS junk
+.DS_Store
+.vscode/
+.idea/
+*.tsbuildinfo
+
+# Proposed-files staging (this branch's drafts)
+*.proposed
