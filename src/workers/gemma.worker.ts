@@ -137,8 +137,8 @@ async function callOllama(chunk: string): Promise<RawGemmaDetection[]> {
 // download cost.
 //
 // The model id below resolves to Gemma 4 E2B Instruct, q4f16_1 quantisation,
-// served from the MLC CDN. Validated 2026-04-13 (welcoma/gemma-4-E2B-it-
-// q4f16_1-MLC on HuggingFace). The constant lives here rather than at
+// served from the MLC CDN. Validated 2026-04-13. The constant lives
+// here rather than at
 // module scope so a build-time tree-shake of the WebLLM path also drops
 // the id. Requires WebGPU + shader-f16 feature in the browser.
 const WEBLLM_MODEL_ID = 'gemma-4-E2B-it-q4f16_1-MLC'
