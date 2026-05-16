@@ -1,6 +1,6 @@
 {
   "name": "bounds-gemma",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "On-device Gemma 4 contextual PHI redaction toolkit for HIPAA Safe Harbor de-identification. Runs in a browser via WebLLM or locally via Ollama, never on a server.",
   "license": "Apache-2.0",
   "type": "module",
