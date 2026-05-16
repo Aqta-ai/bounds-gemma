@@ -52,7 +52,7 @@ Input page text
 ┌─────────────────────────────────────────────────────────────────┐
 │ Gemma 4 inference                                               │
 │  ├─ Ollama:   model=gemma4:e2b                                  │
-│  ├─ WebLLM:   model=gemma-4-E2B-it-q4f16_1-MLC (welcoma)        │
+│  ├─ WebLLM:   model=gemma-4-E2B-it-q4f16_1-MLC        │
 │  ├─ system prompt: six HIPAA Safe Harbor #17 categories         │
 │  └─ output contract: JSON array, no prose                       │
 └─────────────────────────────────────────────────────────────────┘
