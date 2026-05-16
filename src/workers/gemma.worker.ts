@@ -109,13 +109,19 @@ async function callOllama(chunk: string): Promise<RawGemmaDetection[]> {
         { role: 'user', content: chunk },
       ],
       stream: false,
+      // Gemma 4 has chain-of-thought reasoning enabled by default in
+      // Ollama; those thinking tokens count against num_predict and
+      // truncated our test output mid-JSON-entry at the old 600 cap.
+      // Disable thinking (think:false) AND bump num_predict to 2048 so
+      // the visible JSON has room to complete on a full clinical page.
+      think: false,
       options: {
-        temperature: 0.1, // low temp for deterministic redaction decisions
-        num_predict: 600,
+        temperature: 0.1,
+        num_predict: 2048,
       },
       format: 'json',
     }),
-    signal: AbortSignal.timeout(60_000),
+    signal: AbortSignal.timeout(90_000),
   })
   if (!res.ok) {
     throw new Error(`Ollama returned ${res.status}: ${await res.text()}`)
