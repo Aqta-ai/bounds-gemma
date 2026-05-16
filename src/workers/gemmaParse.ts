@@ -2,7 +2,7 @@
 // they can be unit-tested without instantiating the Web Worker (which is
 // not available in the Node test environment).
 
-import type { PiiType } from '../types'
+import type { PiiType } from '../types/index.js'
 
 export const HEALTHCARE_CONFIDENCE_FLOOR = 0.75
 export const CHUNK_MAX_CHARS = 800

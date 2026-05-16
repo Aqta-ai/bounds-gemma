@@ -24,7 +24,7 @@ export {
   HEALTHCARE_CONFIDENCE_FLOOR,
   CHUNK_MAX_CHARS,
   type RawGemmaDetection,
-} from './workers/gemmaParse'
+} from './workers/gemmaParse.js'
 
 export {
   startGemmaJob,
@@ -33,11 +33,11 @@ export {
   subscribeGemmaBackend,
   subscribeGemmaModelProgress,
   type GemmaBackend,
-} from './pipeline/GemmaWorker'
+} from './pipeline/GemmaWorker.js'
 
 export type {
   PiiType,
   DetectionSource,
   BBox,
   Detection,
-} from './types/index'
+} from './types/index.js'

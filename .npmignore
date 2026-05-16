@@ -9,10 +9,11 @@ tsconfig.build.json
 vitest.config.ts
 
 # Tests (source ships, but compiled tests do not)
-**/__tests__/**
-**/*.test.ts
-**/*.test.js
-**/*.test.d.ts
+src/__tests__/
+__tests__/
+*.test.ts
+*.test.js
+*.test.d.ts
 
 # Example runners
 examples/

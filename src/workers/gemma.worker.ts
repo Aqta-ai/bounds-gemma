@@ -25,7 +25,7 @@ import {
   chunkText,
   parseAndValidate,
   type RawGemmaDetection,
-} from './gemmaParse'
+} from './gemmaParse.js'
 
 type GemmaBackend = 'ollama' | 'webllm' | 'unavailable'
 

@@ -5,7 +5,63 @@
   "license": "Apache-2.0",
   "type": "module",
   "private": false,
+  "author": "Anya Chueayen <hello@aqta.ai>",
+  "homepage": "https://github.com/Aqta-ai/bounds-gemma#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aqta-ai/bounds-gemma.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Aqta-ai/bounds-gemma/issues"
+  },
+  "keywords": [
+    "gemma",
+    "gemma-4",
+    "phi",
+    "pii",
+    "hipaa",
+    "redaction",
+    "privacy",
+    "on-device",
+    "webllm",
+    "ollama",
+    "healthcare",
+    "ai",
+    "llm"
+  ],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./parser": {
+      "types": "./dist/workers/gemmaParse.d.ts",
+      "import": "./dist/workers/gemmaParse.js"
+    },
+    "./worker": {
+      "types": "./dist/workers/gemma.worker.d.ts",
+      "import": "./dist/workers/gemma.worker.js"
+    },
+    "./pipeline": {
+      "types": "./dist/pipeline/GemmaWorker.d.ts",
+      "import": "./dist/pipeline/GemmaWorker.js"
+    },
+    "./types": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/types/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "NOTICE",
+    "README.md"
+  ],
   "scripts": {
+    "build": "tsc --project tsconfig.build.json",
+    "prepublishOnly": "npm run build && npm test",
     "test": "vitest run",
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit",
@@ -26,5 +82,11 @@
     "@mlc-ai/web-llm": {
       "optional": true
     }
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

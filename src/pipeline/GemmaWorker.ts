@@ -1,4 +1,4 @@
-import type { Detection, PiiType } from '../types'
+import type { Detection, PiiType } from '../types/index.js'
 
 // ---------------------------------------------------------------------------
 // GemmaWorker, main-thread facade for the gemma.worker.ts Web Worker.

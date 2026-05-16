@@ -4,7 +4,7 @@ import {
   CHUNK_MAX_CHARS,
   chunkText,
   parseAndValidate,
-} from '../workers/gemmaParse'
+} from '../workers/gemmaParse.js'
 
 // ---------------------------------------------------------------------------
 // parseAndValidate — accepts only well-formed, in-corpus health PHI.
