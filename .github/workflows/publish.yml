@@ -21,7 +21,6 @@ permissions:
 jobs:
   publish:
     runs-on: ubuntu-latest
-    environment: release
     steps:
       - name: Check out source
         uses: actions/checkout@v4
