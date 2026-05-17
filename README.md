@@ -1,8 +1,8 @@
 # bounds-gemma
 
-**On-device Gemma 4 contextual PHI redaction.** A small, focused TypeScript toolkit that uses Google's Gemma 4 to catch the protected-health-information shapes that regex and named-entity recognition systematically miss: inline diagnoses in clinical prose, medication mentions, treatment narratives, indirect health context, sensitive social data, and genetic references. Runs in a browser via WebLLM, locally via Ollama, or in any environment that can speak HTTP to a Gemma 4 endpoint. Never on a server.
+**On-device Gemma 4 contextual PHI redaction.** A small, focused TypeScript toolkit that uses Google's Gemma 4 to catch the protected-health-information shapes that regex and named-entity recognition systematically miss: inline diagnoses in clinical prose, medication mentions, treatment narratives, indirect health context, sensitive social data, and genetic references. Runs locally via Ollama. The browser WebLLM path is wired and activates the moment MLC publishes a Gemma 4 MLC build. Never on a server.
 
-Live demo: <https://bounds.pro>
+Live demo: <https://bounds.aqta.ai>
 
 This is the open-source pipeline that powers the contextual-PHI layer of Bounds Pro, a closed-source PDF redaction workspace. The toolkit on its own is enough to reproduce that layer end to end on your own documents.
 
@@ -87,22 +87,22 @@ ollama serve
 
 Then point any consumer at `http://localhost:11434/api/chat`. The toolkit probes this URL at start-up; if reachable, it routes all subsequent calls there. Sub-second latency per chunk on consumer hardware, zero model-CDN traffic, fully offline after the model pull.
 
-### WebLLM (no-install, in-browser)
+### WebLLM (dormant pending MLC build)
 
-Serve your application under cross-origin isolation:
+The toolkit ships with the WebLLM no-install browser path wired and ready, including dynamic-import of `@mlc-ai/web-llm`, cross-origin-isolation requirements, and a `gemma-4-E2B-it-q4f16_1-MLC` model id. The path activates the moment MLC publishes a Gemma 4 MLC build in its prebuilt config; until then, `getGemmaBackend()` returns `'unavailable'` when no Ollama daemon is reachable, and the toolkit will not silently fall back to an older Gemma family.
+
+Serving headers for when WebLLM activates:
 
 ```
 Cross-Origin-Opener-Policy: same-origin
 Cross-Origin-Embedder-Policy: require-corp
 ```
 
-The toolkit dynamic-imports `@mlc-ai/web-llm` on first use and loads `gemma-4-E2B-it-q4f16_1-MLC` from the MLC CDN. Weights are cached in browser storage; subsequent sessions are fully offline. First load is slow (~1.5 GB download); subsequent loads are instant.
-
 ## Install
 
 ```bash
 npm install bounds-gemma
-# Optional, only if you want the WebLLM browser path:
+# Optional, only when MLC ships a Gemma 4 WebLLM build:
 npm install @mlc-ai/web-llm
 ```
 
