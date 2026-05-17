@@ -137,9 +137,9 @@ npm test
 - It does not run an auditor. The cross-check pattern in the closed-source Bounds Pro pairs Gemma 4 26B with Gemma 4 31B as paraphraser plus auditor; the on-device toolkit ships only the paraphraser side and relies on verbatim-wins-ties as the safety floor.
 - It does not phone home. No analytics, no telemetry, no model-CDN ping. Verify with the Network tab.
 
-## Source attribution
+## Licence and terms
 
-Built and maintained by Anya Chueayen ([@anyapages](https://github.com/anyapages)). Released under Apache-2.0 (see `LICENSE`). The Gemma family and the Gemma Prohibited Use Policy are governed by their own terms; using this toolkit means you accept Google's terms for Gemma 4 as well. The HIPAA Safe Harbor identifier list is in the public domain.
+Released under Apache-2.0 (see `LICENSE`). The Gemma family and the Gemma Prohibited Use Policy are governed by their own terms; using this toolkit means you accept Google's terms for Gemma 4 as well. The HIPAA Safe Harbor identifier list is in the public domain.
 
 ## Acknowledgements
 
