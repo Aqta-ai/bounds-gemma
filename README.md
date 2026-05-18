@@ -52,11 +52,11 @@ ollama serve
 
 Then point any consumer at `http://localhost:11434/api/chat`. The toolkit probes this URL at start-up; if reachable, it routes all subsequent calls there. Sub-second latency per chunk on consumer hardware, zero model-CDN traffic, fully offline after the model pull.
 
-### WebLLM (dormant pending MLC build)
+### WebLLM (no-install browser path)
 
-The toolkit ships with the WebLLM no-install browser path wired and ready, including dynamic-import of `@mlc-ai/web-llm`, cross-origin-isolation requirements, and a `gemma-4-E2B-it-q4f16_1-MLC` model id. The path activates the moment MLC publishes a Gemma 4 MLC build in its prebuilt config; until then, `getGemmaBackend()` returns `'unavailable'` when no Ollama daemon is reachable, and the toolkit will not silently fall back to an older Gemma family.
+The toolkit ships a WebLLM browser path that activates automatically when no Ollama daemon is reachable. It dynamic-imports `@mlc-ai/web-llm`, loads the `gemma-4-E2B-it-q4f16_1-MLC` build (one-time ~1.5 GB download, cached in IndexedDB), and runs the same contextual PHI detection in-tab. The toolkit will not silently fall back to an older Gemma family.
 
-Serving headers for when WebLLM activates:
+Serving headers required for the WebLLM path:
 
 ```
 Cross-Origin-Opener-Policy: same-origin
