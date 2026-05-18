@@ -1,8 +1,6 @@
 # bounds-gemma
 
-**On-device Gemma 4 contextual PHI redaction.** A small, focused TypeScript toolkit that uses Google's Gemma 4 to catch the protected-health-information shapes that regex and named-entity recognition systematically miss: inline diagnoses in clinical prose, medication mentions, treatment narratives, indirect health context, sensitive social data, and genetic references. Runs locally via Ollama. The browser WebLLM path is wired and activates the moment MLC publishes a Gemma 4 MLC build. Never on a server.
-
-Live demo: <https://bounds.aqta.ai>
+**On-device Gemma 4 contextual PHI redaction.** A small, focused TypeScript toolkit that uses Google's Gemma 4 to catch the protected-health-information shapes that regex and named-entity recognition systematically miss: inline diagnoses in clinical prose, medication mentions, treatment narratives, indirect health context, sensitive social data, and genetic references. Dual path: Ollama when the local daemon is available, WebLLM with the `gemma-4-E2B-it-q4f16_1-MLC` build in the browser otherwise. Never on a server.
 
 This is the open-source pipeline that powers the contextual-PHI layer of Bounds Pro, a closed-source PDF redaction workspace. The toolkit on its own is enough to reproduce that layer end to end on your own documents.
 
