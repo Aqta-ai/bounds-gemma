@@ -35,40 +35,7 @@ const detections = await startGemmaJob({
 
 Each detection is a `{ text, type, confidence, ruleId, reason }` object. Confidence has a healthcare-only floor of 0.75; below that, the detection is silently dropped. The text field is verified to be a byte-identical substring of the input page (with NFC Unicode normalisation), so model hallucinations and paraphrases never reach the consumer.
 
-## Architecture
-
-```
-Input page text
-      │
-      ▼
-┌─────────────────────────────────────────────────────────────────┐
-│ GemmaWorker (main-thread facade)                                │
-│  ├─ probes Ollama at localhost:11434/api/tags                   │
-│  ├─ falls back to WebLLM via @mlc-ai/web-llm in a Worker        │
-│  └─ chunks long pages, dispatches one model call per chunk      │
-└─────────────────────────────────────────────────────────────────┘
-      │
-      ▼
-┌─────────────────────────────────────────────────────────────────┐
-│ Gemma 4 inference                                               │
-│  ├─ Ollama:   model=gemma4:e2b                                  │
-│  ├─ WebLLM:   model=gemma-4-E2B-it-q4f16_1-MLC                  │
-│  ├─ system prompt: six HIPAA Safe Harbor #17 categories         │
-│  └─ output contract: JSON array, no prose                       │
-└─────────────────────────────────────────────────────────────────┘
-      │
-      ▼
-┌─────────────────────────────────────────────────────────────────┐
-│ gemmaParse (validator)                                          │
-│  ├─ strips fences and prose preamble                            │
-│  ├─ enforces JSON schema and confidence floor (0.75)            │
-│  ├─ verifies every detection text is in-corpus (NFC compared)   │
-│  └─ rejects hallucinations silently                             │
-└─────────────────────────────────────────────────────────────────┘
-      │
-      ▼
-Detection[] for downstream PDF redaction
-```
+## Healthcare guardrails
 
 Three guardrails make this safe for healthcare paraphrase tasks:
 
